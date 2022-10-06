@@ -17,6 +17,7 @@ all:
 		make 1-9
 		make 1.3
 		make 1.4
+		make 1.5
 
 1-5: ./intro/example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpcli.o -o ./intro/example_programs/daytimetcpcli.o
@@ -31,4 +32,7 @@ all:
 		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.3.o ${WRAPERS} -o ./intro/exercise/e1.3.o
 
 1.4: ./intro/exercise/e1.4.o ./lib/error.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.4.o ${WRAPERS} -o ./intro/exercise/e1.4.o		
+		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.4.o ${WRAPERS} -o ./intro/exercise/e1.4.o
+		
+1.5: ./intro/exercise/e1.5.o ./lib/error.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.5.o ${WRAPERS} -o ./intro/exercise/e1.5.o				
