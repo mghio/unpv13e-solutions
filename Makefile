@@ -21,6 +21,7 @@ all:
 		make 4-11
 		make 4.2
 		make 4.4
+		make 4.5
 
 1-5: ./intro/example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpcli.o -o ./intro/example_programs/daytimetcpcli.o
@@ -47,4 +48,7 @@ all:
 		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./intro/exercise/e4.2.o ${WRAPERS} -o ./intro/exercise/e4.2.o
 
 4.4: ./intro/exercise/e4.4.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./intro/exercise/e4.4.o ${WRAPERS} -o ./intro/exercise/e4.4.o				
+		${CC} ${OPT} ./lib/error.o ./intro/exercise/e4.4.o ${WRAPERS} -o ./intro/exercise/e4.4.o
+
+4.5: ./intro/exercise/e4.5.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./intro/exercise/e4.5.o ${WRAPERS} -o ./intro/exercise/e4.5.o						
