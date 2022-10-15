@@ -6,7 +6,7 @@ CFLAGS	= -I./lib -g -O2 -D_REENTRANT -Wall
 EXECS   = daytimetcpcli daytimetcpcliv6 daytimetcpserv 1.3
 
 DEPS    = config.h ./lib/unp.h ./lib/unpthread.h
-WRAPERS = ./lib/wraplib.o ./lib/wrappthread.o ./lib/wrapsock.o ./lib/wrapunix.o
+WRAPERS = ./lib/wraplib.o ./lib/wrappthread.o ./lib/wrapsock.o ./lib/wrapunix.o ./lib/wrapstdio.o
 
 %.o: %.c ${DEPS}
 		${CC} -c -o $@ $< ${CFLAGS}
@@ -23,6 +23,7 @@ all:
 		make 4.4
 		make 4.5
 		make 5.1_serv
+		make 5.1_cli
 
 1-5: ./intro/example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpcli.o -o ./intro/example_programs/daytimetcpcli.o
@@ -55,4 +56,7 @@ all:
 		${CC} ${OPT} ./lib/error.o ./intro/exercise/e4.5.o ${WRAPERS} -o ./intro/exercise/e4.5.o
 
 5.1_serv: ./intro/exercise/e5.1_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./intro/exercise/e5.1_serv.o ${WRAPERS} -o ./intro/exercise/e5.1_serv.o								
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./intro/exercise/e5.1_serv.o ${WRAPERS} -o ./intro/exercise/e5.1_serv.o
+
+5.1_cli: ./intro/exercise/e5.1_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./intro/exercise/e5.1_cli.o ${WRAPERS} -o ./intro/exercise/e5.1_cli.o										
