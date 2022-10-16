@@ -24,7 +24,8 @@ all:
 		make 4.5
 		make 5.1_serv
 		make 5.1_cli
-		make 5.6
+		make 5.6_serv
+		make 5.6_cli
 
 1-5: ./intro/example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpcli.o -o ./intro/example_programs/daytimetcpcli.o
@@ -62,5 +63,8 @@ all:
 5.1_cli: ./intro/exercise/e5.1_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./intro/exercise/e5.1_cli.o ${WRAPERS} -o ./intro/exercise/e5.1_cli.o
 
-5.6: ./intro/exercise/e5.6.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./intro/exercise/e5.6.o ${WRAPERS} -o ./intro/exercise/e5.6.o												
+5.6_serv: ./intro/exercise/e5.6_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./intro/exercise/e5.6_serv.o ${WRAPERS} -o ./intro/exercise/e5.6_serv.o		
+
+5.6_cli: ./intro/exercise/e5.6_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./intro/exercise/e5.6_cli.o ${WRAPERS} -o ./intro/exercise/e5.6_cli.o												
