@@ -29,55 +29,59 @@ all:
 		make 6.4
 		make 6.5
 		make 6.8
+		make 7.1
 
-1-5: ./intro/example_programs/daytimetcpcli.o ./lib/error.o
-		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpcli.o -o ./intro/example_programs/daytimetcpcli.o
+1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
+		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
 
-1-6: ./intro/example_programs/daytimetcpcliv6.o ./lib/error.o	
-		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpcliv6.o -o ./intro/example_programs/daytimetcpcliv6.o
+1-6: ./example_programs/daytimetcpcliv6.o ./lib/error.o	
+		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcliv6.o -o ./example_programs/daytimetcpcliv6.o
 
-1-9: ./intro/example_programs/daytimetcpsrv.o ./lib/error.o	${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpsrv.o ${WRAPERS} -o ./intro/example_programs/daytimetcpsrv.o
+1-9: ./example_programs/daytimetcpsrv.o ./lib/error.o	${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpsrv.o ${WRAPERS} -o ./example_programs/daytimetcpsrv.o
 
-1.3: ./intro/exercise/e1.3.o ./lib/error.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.3.o ${WRAPERS} -o ./intro/exercise/e1.3.o
+1.3: ./exercise/e1.3.o ./lib/error.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e1.3.o ${WRAPERS} -o ./exercise/e1.3.o
 
-1.4: ./intro/exercise/e1.4.o ./lib/error.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.4.o ${WRAPERS} -o ./intro/exercise/e1.4.o
+1.4: ./exercise/e1.4.o ./lib/error.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e1.4.o ${WRAPERS} -o ./exercise/e1.4.o
 		
-1.5: ./intro/exercise/e1.5.o ./lib/error.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e1.5.o ${WRAPERS} -o ./intro/exercise/e1.5.o
+1.5: ./exercise/e1.5.o ./lib/error.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e1.5.o ${WRAPERS} -o ./exercise/e1.5.o
 
-4-11: ./intro/example_programs/daytimetcpsrv1.o ./lib/error.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/example_programs/daytimetcpsrv1.o ${WRAPERS} -o ./intro/example_programs/daytimetcpsrv1.o						
+4-11: ./example_programs/daytimetcpsrv1.o ./lib/error.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpsrv1.o ${WRAPERS} -o ./example_programs/daytimetcpsrv1.o						
 
-4.2: ./intro/exercise/e4.2.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./intro/exercise/e4.2.o ${WRAPERS} -o ./intro/exercise/e4.2.o
+4.2: ./exercise/e4.2.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./exercise/e4.2.o ${WRAPERS} -o ./exercise/e4.2.o
 
-4.4: ./intro/exercise/e4.4.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e4.4.o ${WRAPERS} -o ./intro/exercise/e4.4.o
+4.4: ./exercise/e4.4.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e4.4.o ${WRAPERS} -o ./exercise/e4.4.o
 
-4.5: ./intro/exercise/e4.5.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e4.5.o ${WRAPERS} -o ./intro/exercise/e4.5.o
+4.5: ./exercise/e4.5.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e4.5.o ${WRAPERS} -o ./exercise/e4.5.o
 
-5.1_serv: ./intro/exercise/e5.1_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./intro/exercise/e5.1_serv.o ${WRAPERS} -o ./intro/exercise/e5.1_serv.o
+5.1_serv: ./exercise/e5.1_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./exercise/e5.1_serv.o ${WRAPERS} -o ./exercise/e5.1_serv.o
 
-5.1_cli: ./intro/exercise/e5.1_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./intro/exercise/e5.1_cli.o ${WRAPERS} -o ./intro/exercise/e5.1_cli.o
+5.1_cli: ./exercise/e5.1_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./exercise/e5.1_cli.o ${WRAPERS} -o ./exercise/e5.1_cli.o
 
-5.6_serv: ./intro/exercise/e5.6_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./intro/exercise/e5.6_serv.o ${WRAPERS} -o ./intro/exercise/e5.6_serv.o		
+5.6_serv: ./exercise/e5.6_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./exercise/e5.6_serv.o ${WRAPERS} -o ./exercise/e5.6_serv.o		
 
-5.6_cli: ./intro/exercise/e5.6_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./intro/exercise/e5.6_cli.o ${WRAPERS} -o ./intro/exercise/e5.6_cli.o
+5.6_cli: ./exercise/e5.6_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./exercise/e5.6_cli.o ${WRAPERS} -o ./exercise/e5.6_cli.o
 
-6.4: ./intro/exercise/e6.4.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e6.4.o ${WRAPERS} -o ./intro/exercise/e6.4.o
+6.4: ./exercise/e6.4.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e6.4.o ${WRAPERS} -o ./exercise/e6.4.o
 
 
-6.5: ./intro/exercise/e6.5.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./intro/exercise/e6.5.o ${WRAPERS} -o ./intro/exercise/e6.5.o																
+6.5: ./exercise/e6.5.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e6.5.o ${WRAPERS} -o ./exercise/e6.5.o																
 
-6.8: ./intro/exercise/e6.8.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./intro/exercise/e6.8.o ${WRAPERS} -o ./intro/exercise/e6.8.o
+6.8: ./exercise/e6.8.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./exercise/e6.8.o ${WRAPERS} -o ./exercise/e6.8.o
+
+7.1: ./exercise/e7.1.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./exercise/e7.1.o ${WRAPERS} -o ./exercise/e7.1.o		
