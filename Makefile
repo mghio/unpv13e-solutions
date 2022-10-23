@@ -32,6 +32,8 @@ all:
 		make 7.1
 		make 7.2_serv
 		make 7.2_cli
+		make 7.3_serv
+		make 7.3_cli
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -92,4 +94,10 @@ all:
 		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./exercise/e7.2_serv.o ${WRAPERS} -o ./exercise/e7.2_serv.o		
 
 7.2_cli: ./exercise/e7.2_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./exercise/e7.2_cli.o ${WRAPERS} -o ./exercise/e7.2_cli.o		
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./exercise/e7.2_cli.o ${WRAPERS} -o ./exercise/e7.2_cli.o
+
+7.3_serv: ./exercise/e7.3_serv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/signal.o ./exercise/e7.3_serv.o ${WRAPERS} -o ./exercise/e7.3_serv.o
+
+7.3_cli: ./exercise/e7.3_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./exercise/e7.3_cli.o ${WRAPERS} -o ./exercise/e7.3_cli.o						
