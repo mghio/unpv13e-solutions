@@ -34,6 +34,8 @@ all:
 		make 7.2_cli
 		make 7.3_serv
 		make 7.3_cli
+		make udp_cli_01
+		make udp_serv_01
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -101,3 +103,9 @@ all:
 
 7.3_cli: ./exercise/e7.3_cli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./exercise/e7.3_cli.o ${WRAPERS} -o ./exercise/e7.3_cli.o						
+
+udp_cli_01: ./example_programs/udpcli01.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/udpcli01.o ${WRAPERS} -o ./example_programs/udpcli01.o 		
+
+udp_serv_01: ./example_programs/udpserv01.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/udpserv01.o ${WRAPERS} -o ./example_programs/udpserv01.o
