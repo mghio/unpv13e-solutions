@@ -37,6 +37,7 @@ all:
 		make udp_cli_01
 		make udp_serv_01
 		make sctp_serv_01
+		make hostent
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -112,4 +113,7 @@ udp_serv_01: ./example_programs/udpserv01.o ./lib/error.o ./lib/sock_ntop.o ./li
 		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/udpserv01.o ${WRAPERS} -o ./example_programs/udpserv01.o
 
 sctp_serv_01: ./example_programs/sctpserv01.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/wrapunix.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/sctpserv01.o ${WRAPERS} -o ./example_programs/sctpserv01.o		
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/sctpserv01.o ${WRAPERS} -o ./example_programs/sctpserv01.o
+
+hostent: ./example_programs/hostent.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/wrapunix.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/hostent.o ${WRAPERS} -o ./example_programs/hostent.o				
