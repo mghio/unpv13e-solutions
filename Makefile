@@ -46,6 +46,7 @@ all:
 		make daytimeudpnameserv
 		make 11.1
 		make 11.4
+		make 11.5
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -148,4 +149,7 @@ daytimeudpnameserv: ./example_programs/daytimeudpnameserv.o ./lib/error.o ./lib/
 		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./exercise/e11.1.o ${WRAPERS} -o ./exercise/e11.1.o
 
 11.4: ./exercise/e11.4.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/sock_ntop.o ./exercise/e11.4.o ${WRAPERS} -o ./exercise/e11.4.o				
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/sock_ntop.o ./exercise/e11.4.o ${WRAPERS} -o ./exercise/e11.4.o
+
+11.5: ./exercise/e11.5.o ./lib/error.o ./lib/sock_ntop.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ./lib/sock_ntop.o ./exercise/e11.5.o ${WRAPERS} -o ./exercise/e11.5.o						
