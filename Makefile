@@ -44,6 +44,7 @@ all:
 		make daytimetcpnamesserv2
 		make daytimeudpnamecli
 		make daytimeudpnameserv
+		make 11.1
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -141,3 +142,6 @@ daytimeudpnamecli: ./example_programs/daytimeudpnamecli.o ./lib/error.o ./lib/so
 
 daytimeudpnameserv: ./example_programs/daytimeudpnameserv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/wrapunix.o ./lib/udp_server.o ./lib/sock_ntop_host.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./lib/udp_server.o ./lib/sock_ntop_host.o ./example_programs/daytimeudpnameserv.o ${WRAPERS} -o ./example_programs/daytimeudpnameserv.o														
+
+11.1: ./exercise/e11.1.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/writen.o ./lib/readline.o ./exercise/e11.1.o ${WRAPERS} -o ./exercise/e11.1.o		
