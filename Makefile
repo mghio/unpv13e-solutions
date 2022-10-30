@@ -42,6 +42,7 @@ all:
 		make daytimetcpnamescli
 		make daytimetcpnamesserv
 		make daytimetcpnamesserv2
+		make daytimeudpnamecli
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -132,4 +133,7 @@ daytimetcpnamesserv: ./example_programs/daytimetcpnamesserv.o ./lib/error.o ./li
 		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./lib/tcp_listen.o ./example_programs/daytimetcpnamesserv.o ${WRAPERS} -o ./example_programs/daytimetcpnamesserv.o
 
 daytimetcpnamesserv2: ./example_programs/daytimetcpnamesserv2.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/wrapunix.o ./lib/tcp_listen.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./lib/tcp_listen.o ./example_programs/daytimetcpnamesserv2.o ${WRAPERS} -o ./example_programs/daytimetcpnamesserv2.o										
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./lib/tcp_listen.o ./example_programs/daytimetcpnamesserv2.o ${WRAPERS} -o ./example_programs/daytimetcpnamesserv2.o
+
+daytimeudpnamecli: ./example_programs/daytimeudpnamecli.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/wrapunix.o ./lib/udp_client.o ./lib/sock_ntop_host.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./lib/udp_client.o ./lib/sock_ntop_host.o ./example_programs/daytimeudpnamecli.o ${WRAPERS} -o ./example_programs/daytimeudpnamecli.o												
