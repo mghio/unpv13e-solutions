@@ -40,6 +40,7 @@ all:
 		make hostent
 		make daytimetcpcli1
 		make daytimetcpnamescli
+		make daytimetcpnamesserv
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -124,4 +125,7 @@ daytimetcpcli1: ./example_programs/daytimetcpcli1.o ./lib/error.o ./lib/sock_nto
 		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./example_programs/daytimetcpcli1.o ${WRAPERS} -o ./example_programs/daytimetcpcli1.o
 
 daytimetcpnamescli: ./example_programs/daytimetcpnamescli.o ./lib/error.o ./lib/sock_ntop.o ./lib/sock_ntop_host.o ./lib/writen.o ./lib/wrapunix.o ./lib/tcp_connect.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/sock_ntop_host.o ./lib/writen.o ./lib/readline.o ./lib/tcp_connect.o ./example_programs/daytimetcpnamescli.o ${WRAPERS} -o ./example_programs/daytimetcpnamescli.o								
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/sock_ntop_host.o ./lib/writen.o ./lib/readline.o ./lib/tcp_connect.o ./example_programs/daytimetcpnamescli.o ${WRAPERS} -o ./example_programs/daytimetcpnamescli.o
+
+daytimetcpnamesserv: ./example_programs/daytimetcpnamesserv.o ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/wrapunix.o ./lib/tcp_listen.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/writen.o ./lib/readline.o ./lib/tcp_listen.o ./example_programs/daytimetcpnamesserv.o ${WRAPERS} -o ./example_programs/daytimetcpnamesserv.o								
