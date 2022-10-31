@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     char buff[MAXLINE];
     time_t ticks;
 
-    if (argc < 2 || argc > 3)
+    if (argc != 2)
     {
         err_quit("usage: initd_daytimetcpserv2.o [ <host> ] <service or port>");
     }
