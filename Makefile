@@ -48,7 +48,8 @@ all:
 		make 11.4
 		make 11.5
 		make 11.8
-		make initd_daytimetcpserv2
+		make inetd_daytimetcpserv2
+		make inetd_daytimetcpserv3
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -159,5 +160,8 @@ daytimeudpnameserv: ./example_programs/daytimeudpnameserv.o ./lib/error.o ./lib/
 11.8: ./exercise/e11.8.o ./lib/error.o ./lib/sock_ntop.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ./lib/sock_ntop.o ./exercise/e11.8.o ${WRAPERS} -o ./exercise/e11.8.o
 
-initd_daytimetcpserv2: ./example_programs/initd_daytimetcpserv2.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_init.o ./lib/signal.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/daemon_init.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/initd_daytimetcpserv2.o ${WRAPERS} -o ./example_programs/initd_daytimetcpserv2.o									
+inetd_daytimetcpserv2: ./example_programs/inetd_daytimetcpserv2.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_init.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/daemon_init.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/inetd_daytimetcpserv2.o ${WRAPERS} -o ./example_programs/inetd_daytimetcpserv2.o
+
+inetd_daytimetcpserv3: ./example_programs/inetd_daytimetcpserv3.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_inetd.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/daemon_inetd.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/inetd_daytimetcpserv3.o ${WRAPERS} -o ./example_programs/inetd_daytimetcpserv3.o							
