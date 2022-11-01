@@ -164,4 +164,4 @@ inetd_daytimetcpserv2: ./example_programs/inetd_daytimetcpserv2.o ./lib/sock_nto
 		${CC} ${OPT} ./lib/error.o ./lib/daemon_init.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/inetd_daytimetcpserv2.o ${WRAPERS} -o ./example_programs/inetd_daytimetcpserv2.o
 
 inetd_daytimetcpserv3: ./example_programs/inetd_daytimetcpserv3.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_inetd.o ./lib/signal.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./lib/daemon_inetd.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/inetd_daytimetcpserv3.o ${WRAPERS} -o ./example_programs/inetd_daytimetcpserv3.o							
+		${CC} ${OPT} ./lib/error.o ./lib/daemon_inetd.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/inetd_daytimetcpserv3.o ${WRAPERS} -o ./example_programs/inetd_daytimetcpserv3.o	
