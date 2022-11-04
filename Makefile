@@ -51,6 +51,7 @@ all:
 		make inetd_daytimetcpserv2
 		make inetd_daytimetcpserv3
 		make unixdomain_unixbind
+		make unixdomain_unixstrserv01
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -169,3 +170,6 @@ inetd_daytimetcpserv3: ./example_programs/inetd_daytimetcpserv3.o ./lib/sock_nto
 
 unixdomain_unixbind: ./example_programs/unixdomain_unixbind.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_inetd.o ./lib/signal.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/daemon_inetd.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/unixdomain_unixbind.o ${WRAPERS} -o ./example_programs/unixdomain_unixbind.o	
+
+unixdomain_unixstrserv01: ./example_programs/unixdomain_unixstrserv01.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_inetd.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/daemon_inetd.o ./lib/signal.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/unixdomain_unixstrserv01.o ${WRAPERS} -o ./example_programs/unixdomain_unixstrserv01.o		
