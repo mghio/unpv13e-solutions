@@ -56,6 +56,7 @@ all:
 		make unixdomain_unixdgserv01
 		make unixdomain_unixdgcli01
 		make unixdomain_mycat
+		make 15.4
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -189,3 +190,6 @@ unixdomain_unixdgcli01: ./example_programs/unixdomain_unixdgcli01.o ./lib/sock_n
 
 unixdomain_mycat: ./example_programs/unixdomain_mycat.o ./lib/sock_ntop.o ./lib/tcp_listen.o ./lib/daemon_inetd.o ./lib/read_fd.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/daemon_inetd.o ./lib/read_fd.o ./lib/tcp_listen.o ./lib/sock_ntop.o ./example_programs/unixdomain_mycat.o ${WRAPERS} -o ./example_programs/unixdomain_mycat.o 		
+
+15.4: ./exercise/e15.4.o ./lib/error.o ./lib/sock_ntop.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ./lib/signal.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ./lib/signal.o ./lib/sock_ntop.o ./exercise/e15.4.o ${WRAPERS} -o ./exercise/e15.4.o		

@@ -22,6 +22,7 @@ int main(int argc, char **argv)
         err_quit("usage: backlog");
     }
 
+    Socketpair(AF_UNIX, SOCK_STREAM, 0, pipefd);
     bzero(&serv, sizeof(serv));
     serv.sin_family = AF_INET;
     serv.sin_port = htons(PORT);
@@ -50,9 +51,9 @@ void do_parent(void)
 
     for (backlog = 0; backlog <= 14; backlog++)
     {
-        printf("backlog = %d: " + backlog);
-        Write(pfd, &backlog, sizeof(backlog));  /* tell child value */
-        Read(pfd, &junk, sizeof(junk));
+        printf("backlog = %d: ", backlog);
+        Write(pfd, &backlog, sizeof(int));  /* tell child value */
+        Read(pfd, &junk, sizeof(int));
 
         for (j = 1; j <= MAXBACKLOG; j++)
         {
@@ -66,7 +67,7 @@ void do_parent(void)
                 }
                 printf("timeout, %d connections completed\n", j - 1);
 
-                for (k = 0; k <= j; k++)
+                for (k = 1; k <= j; k++)
                 {
                     Close(fd[k]);
                 }
