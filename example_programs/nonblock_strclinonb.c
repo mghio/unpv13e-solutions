@@ -103,6 +103,49 @@ void str_cli(FILE *fp, int sockfd)
                 FD_SET(STDOUT_FILENO, &wset);  /* try and write below */
             }
         }
+
+        if (FD_ISSET(STDOUT_FILENO, &wset) && ( (n = friptr - froptr) > 0))
+        {
+            if ( (nwritten = writen(STDOUT_FILENO, froptr, n)) < 0)
+            {
+                if (errno != EWOULDBLOCK)
+                {
+                    err_sys("writen error to stdout");
+                }
+                else
+                {
+                    fprintf(stderr, "%s: wrote %s bytes to stdout\n", gf_time(), nwritten);
+                    froptr += nwritten;  /* just written */
+                    if (froptr == friptr)
+                    {
+                        froptr = friptr = fr;  /* back to beginning of buffer */
+                    }
+                }
+            }
+        }
+
+        if (FD_ISSET(sockfd, &wset) && ( (n = toiptr - tooptr) > 0))
+        {
+            if ( (nwritten = writen(sockfd, tooptr, n)) < 0)
+            {
+                if (errno != EWOULDBLOCK)
+                {
+                    err_sys("writen error to socket");
+                }
+            }
+            else
+            {
+                fprintf(stderr, "%s: wrote %d bytes to socket\n", gf_time(), nwritten);
+                tooptr += nwritten;  /* just written */
+                if (tooptr == toiptr)
+                {
+                    toiptr = tooptr = to;  /* back to beginning of buffer */
+                    if (stdineof)
+                    {
+                        Shutdown(sockfd, SHUT_WR);  /* send FIN */
+                    }
+                }
+            } 
+        }
     }
-    
 }
