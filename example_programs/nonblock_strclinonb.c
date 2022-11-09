@@ -99,7 +99,7 @@ void str_cli(FILE *fp, int sockfd)
             else
             {
                 fprintf(stderr, "%s: read %d bytes from socket\n", gf_time(), n);
-                toiptr += n;  /* just read */
+                friptr += n;  /* just read */
                 FD_SET(STDOUT_FILENO, &wset);  /* try and write below */
             }
         }
