@@ -11,11 +11,12 @@ void str_cli(FILE *fp, int sockfd)
         {
             Fputs(recvline, stdout);
         }
+        
         kill(getppid(), SIGTERM);  /* in case parent still ruinning */
         eixt(0);
     }
 
-    /* parent: stdi -> server */
+    /* parent: stdin -> server */
     while (Fgets(sendline, MAXLINE, fp) != NULL)
     {
         Writen(sockfd, sendline, strlen(sendline));
