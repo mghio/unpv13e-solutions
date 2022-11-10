@@ -1,6 +1,6 @@
 #include <unp.h>
 
-#define MAXLINES 20
+#define MAXFILES 20
 #define SERV "80"  /* port number or server name */
 
 struct file {
@@ -8,7 +8,7 @@ struct file {
     char *f_host;  /* hostname or IPv4/IPv6 address */
     int f_fd;      /* descriptor */
     int f_flags;   /* F_xxx below */
-} file[MAXLINES];
+} file[MAXFILES];
 
 #define F_CONNECTING 1  /* connect() in process */
 #define F_READING 2     /* connect() complete; now reading */
