@@ -69,7 +69,6 @@ int main(int argc, char *argv)
                         err_ret("nonblocking connect failed for %s", file[i].f_name);
                     }
 
-
                     /* connection established */
                     printf("connection established for %s\n", file[i].f_name);
                     FD_CLR(fd, &wset);  /* no more writenabliity test */
