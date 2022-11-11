@@ -26,4 +26,73 @@ int main(int argc, char *argv)
     maxfd = -1;
     nlefttoread = nlefttoconn = nfiles;
     nconn = 0;
+
+    while (nlefttoread > 0)
+    {
+        while (nconn < maxconn && nlefttoconn > 0) {
+            /* find a file to read */
+            for (i = 0; i < nfiles; i++)
+            {
+                if (file[i].f_flags == 0)
+                {
+                    break;
+                }
+            }
+
+            if (i == nfiles)
+            {
+                err_quit("nlefttoconn = %d but nothing found", nlefttoconn);
+            }
+
+            start_connect(&file[i]);
+            nconn++;
+            nlefttoconn--;
+            
+            rs = rset;
+            ws = wset;
+            n = Select(maxfd + 1, &rs, &ws, NULL, NULL);
+
+            for (i = 0; i < nfiles; i++)
+            {
+                flags = file[i].f_flags;
+                if (flags == 0 || flags & F_DONE)
+                {
+                    continue;
+                }
+
+                fd = file[i].f_flags;
+                if (flags & F_CONNECTING && (FD_ISSET(fd, &rs) || FD_ISSET(fd, &ws)))
+                {
+                    n = sizeof(error);
+                    if (getsockopt(fd, SOL_SOCKET, SO_ERROR, &error, &n) < 0 || error != 0)
+                    {
+                        err_ret("nonblocking connect failed for %s", file[i].f_name);
+                    }
+
+
+                    /* connection established */
+                    printf("connection established for %s\n", file[i].f_name);
+                    FD_CLR(fd, &wset);  /* no more writenabliity test */
+                    write_get_cmd(&file[i]);  /* writen() the GET command */
+                }
+                else if (flags & F_READING && FD_ISSET(fd, &rs))
+                {
+                    if ( (n = Read(fd, buf, sizeof(buf))) == 0)
+                    {
+                        printf("end-of-file on %s\n", file[i].f_name);
+                        Close(fd);
+                        file[i].f_flags = F_DONE;  /* clear F_READING */
+                        FD_CLR(fd, &rset);
+                        nconn--;
+                        nlefttoread--;
+                    }
+                    else
+                    {
+                        printf("read %d bytes from %s\n", n, file[i].f_name);
+                    }
+                }
+            }
+        }
+    }
+    
 }
