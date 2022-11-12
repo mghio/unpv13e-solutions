@@ -5,7 +5,7 @@ CFLAGS	= -I./lib -g -O2 -D_REENTRANT -Wall
 # when new executables created, added to EXECS, needed by 'make clean'
 EXECS   = daytimetcpcli daytimetcpcliv6 daytimetcpserv 1.3
 
-DEPS    = config.h ./lib/unp.h ./lib/unpthread.h
+DEPS    = config.h ./lib/unp.h ./lib/unpthread.h ./lib/unproute.h
 WRAPERS = ./lib/wraplib.o ./lib/wrappthread.o ./lib/wrapsock.o ./lib/wrapunix.o ./lib/wrapstdio.o
 
 %.o: %.c ${DEPS}
@@ -58,6 +58,7 @@ all:
 		make unixdomain_mycat
 		make 15.4
 		make ioctl_prifinfo
+		make route_getrt
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -197,3 +198,6 @@ unixdomain_mycat: ./example_programs/unixdomain_mycat.o ./lib/sock_ntop.o ./lib/
 
 ioctl_prifinfo: ./example_programs/ioctl_prifinfo.o ./lib/sock_ntop_host.o ./lib/get_ifi_info.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/get_ifi_info.o ./lib/sock_ntop_host.o ./example_programs/ioctl_prifinfo.o ${WRAPERS} -o ./example_programs/ioctl_prifinfo.o
+
+route_getrt: ./example_programs/route_getrt.o ./lib/sock_ntop_host.o ./lib/get_ifi_info.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/get_ifi_info.o ./lib/sock_ntop_host.o ./example_programs/route_getrt.o ${WRAPERS} -o ./example_programs/route_getrt.o		
