@@ -57,6 +57,7 @@ all:
 		make unixdomain_unixdgcli01
 		make unixdomain_mycat
 		make 15.4
+		make ioctl_prifinfo
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -193,3 +194,6 @@ unixdomain_mycat: ./example_programs/unixdomain_mycat.o ./lib/sock_ntop.o ./lib/
 
 15.4: ./exercise/e15.4.o ./lib/error.o ./lib/sock_ntop.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ./lib/signal.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/sock_set_addr.o ./lib/sock_set_port.o ./lib/signal.o ./lib/sock_ntop.o ./exercise/e15.4.o ${WRAPERS} -o ./exercise/e15.4.o		
+
+ioctl_prifinfo: ./example_programs/ioctl_prifinfo.o ./lib/sock_ntop_host.o ./lib/get_ifi_info.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/get_ifi_info.o ./lib/sock_ntop_host.o ./example_programs/ioctl_prifinfo.o ${WRAPERS} -o ./example_programs/ioctl_prifinfo.o
