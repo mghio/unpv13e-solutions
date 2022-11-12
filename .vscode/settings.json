@@ -5,6 +5,8 @@
         "err.h": "c",
         "inet.h": "c",
         "nonblock_web.h": "c",
-        "if.h": "c"
+        "if.h": "c",
+        "if_arp.h": "c",
+        "unpifi.h": "c"
     }
 }
