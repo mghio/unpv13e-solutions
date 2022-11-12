@@ -4,6 +4,7 @@
         "config.h": "c",
         "err.h": "c",
         "inet.h": "c",
-        "nonblock_web.h": "c"
+        "nonblock_web.h": "c",
+        "if.h": "c"
     }
 }
