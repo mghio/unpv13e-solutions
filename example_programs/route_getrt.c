@@ -31,9 +31,10 @@ int main(int argc, char **argv)
     sin = (struct sockaddr_in *) (rtm + 1);
     sin->sin_len = sizeof(struct sockaddr_in);
     sin->sin_family = AF_INET;
-
     Inet_pton(AF_INET, argv[1], &sin->sin_addr);
+
     Write(sockfd, rtm, rtm->rtm_msglen);
+    
     do
     {
         n = Read(sockfd, rtm, BUFLEN);
