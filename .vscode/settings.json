@@ -7,6 +7,7 @@
         "nonblock_web.h": "c",
         "if.h": "c",
         "if_arp.h": "c",
-        "unpifi.h": "c"
+        "unpifi.h": "c",
+        "udp_var.h": "c"
     }
 }
