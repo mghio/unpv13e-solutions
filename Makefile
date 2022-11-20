@@ -60,6 +60,7 @@ all:
 		make ioctl_prifinfo
 		make route_getrt
 		make route_checkudpsum
+		make key_dump
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -204,4 +205,7 @@ route_getrt: ./example_programs/route_getrt.o ./lib/sock_ntop_host.o ./lib/get_i
 		${CC} ${OPT} ./lib/error.o ./lib/get_ifi_info.o ./lib/sock_ntop_host.o ./lib/get_rtaddrs.o ./lib/sock_masktop.o ./example_programs/route_getrt.o ${WRAPERS} -o ./example_programs/route_getrt.o		
 
 route_checkudpsum: ./example_programs/route_checkudpsum.o ${WRAPERS}
-		${CC} ${OPT} ./lib/error.o ./example_programs/route_checkudpsum.o ${WRAPERS} -o ./example_programs/route_checkudpsum.o 		
+		${CC} ${OPT} ./lib/error.o ./example_programs/route_checkudpsum.o ${WRAPERS} -o ./example_programs/route_checkudpsum.o
+
+key_dump: ./example_programs/key_dump.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./example_programs/key_dump.o ${WRAPERS} -o ./example_programs/key_dump.o		 		
