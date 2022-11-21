@@ -61,6 +61,7 @@ all:
 		make route_getrt
 		make route_checkudpsum
 		make key_dump
+		make bcast_dgclicast1
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -106,7 +107,6 @@ all:
 
 6.4: ./exercise/e6.4.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./exercise/e6.4.o ${WRAPERS} -o ./exercise/e6.4.o
-
 
 6.5: ./exercise/e6.5.o ./lib/error.o ./lib/sock_ntop.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./exercise/e6.5.o ${WRAPERS} -o ./exercise/e6.5.o																
@@ -209,3 +209,6 @@ route_checkudpsum: ./example_programs/route_checkudpsum.o ${WRAPERS}
 
 key_dump: ./example_programs/key_dump.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./example_programs/key_dump.o ${WRAPERS} -o ./example_programs/key_dump.o		 		
+
+bcast_dgclicast1: ./lib/sock_ntop_host.o ./lib/signal.o ./example_programs/bcast_dgclicast1.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/signal.o ./lib/sock_ntop_host.o ./example_programs/bcast_dgclicast1.o ${WRAPERS} -o ./example_programs/bcast_dgclicast1.o		
