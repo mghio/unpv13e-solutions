@@ -28,11 +28,11 @@ void dg_cli(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen)
     struct sockaddr *preply_addr;
     preply_addr = Malloc(servlen);
     Setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &on, sizeof(on));
-    // Signal(SIGALRM, recvfrom_alarm);
+    Signal(SIGALRM, recvfrom_alarm);
     while (Fgets(sendline, MAXLINE, fp) != NULL)
     {
         Sendto(sockfd, sendline, strlen(sendline), 0, pservaddr, servlen);
-        alarm(5);
+        alarm(1);
         for ( ; ; )
         {
             len = servlen;
@@ -51,6 +51,7 @@ void dg_cli(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen)
             else
             {
                 recvline[n] = 0;  /* null terminate */
+                sleep(1);
                 printf("form %s: %s", Sock_ntop_host(preply_addr, len), recvline);
             }
         }
