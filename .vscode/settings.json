@@ -9,6 +9,7 @@
         "if_arp.h": "c",
         "unpifi.h": "c",
         "udp_var.h": "c",
-        "setjmp.h": "c"
+        "setjmp.h": "c",
+        "mysdr.h": "c"
     }
 }
