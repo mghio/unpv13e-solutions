@@ -10,6 +10,7 @@
         "unpifi.h": "c",
         "udp_var.h": "c",
         "setjmp.h": "c",
-        "mysdr.h": "c"
+        "mysdr.h": "c",
+        "ssntp_ntp.h": "c"
     }
 }
