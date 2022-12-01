@@ -53,7 +53,7 @@ int main(int argc, char **argv)
             if ( (pid = Fork()) == 0)  /* child */
             {
                 mydg_echo(sockfd, (SA *) &cliaddr, sizeof(cliaddr), (SA *) sa);
-                eixt(0);  /* never executed */
+                exit(0);  /* never executed */
             }
             
             /* bind whildcard address */
