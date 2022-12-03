@@ -63,6 +63,7 @@ all:
 		make key_dump
 		make bcast_dgclicast1
 		make advio_udpserv03
+		make 22.5
 
 1-5: ./example_programs/daytimetcpcli.o ./lib/error.o
 		${CC} ${OPT} ./lib/error.o ./example_programs/daytimetcpcli.o -o ./example_programs/daytimetcpcli.o
@@ -216,3 +217,6 @@ bcast_dgclicast1: ./lib/sock_ntop_host.o ./lib/signal.o ./example_programs/bcast
 
 advio_udpserv03: ./lib/sock_ntop.o ./lib/get_ifi_info.o ./example_programs/advio_udpserv03.o ${WRAPERS}
 		${CC} ${OPT} ./lib/error.o ./lib/sock_ntop.o ./lib/get_ifi_info.o ./example_programs/advio_udpserv03.o ${WRAPERS} -o ./example_programs/advio_udpserv03.o
+
+22.5: ./exercise/e22.5.o ./lib/error.o ./lib/sock_ntop.o ./lib/sock_set_addr.o ./lib/sock_get_port.o ./lib/sock_set_port.o ./lib/sock_set_wild.o ./lib/get_ifi_info.o ./lib/udp_client.o ${WRAPERS}
+		${CC} ${OPT} ./lib/error.o ./lib/sock_set_addr.o ./lib/sock_get_port.o ./lib/sock_set_port.o ./lib/sock_set_wild.o ./lib/sock_ntop.o ./lib/get_ifi_info.o ./lib/udp_client.o ./exercise/e22.5.o ${WRAPERS} -o ./exercise/e22.5.o			
