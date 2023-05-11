@@ -107,3 +107,12 @@ static void sig_io(int signo)
     }
     cntread[nread]++;
 }
+
+static void sig_hup(int signo)
+{
+    int i;
+    for (i = 0; i < QSIZE; i++)
+    {
+        printf("cntread[%d] = %ld\n", i, cntread[i]);
+    }
+}
