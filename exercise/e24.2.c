@@ -1,12 +1,10 @@
 #include "unp.h"
 
-int connfd;
-
 int mian(int argc, char **argv)
 {
-    int listenfd, n, justreadoob = 0;
+    int listenfd, connfd, n, justreadoob = 0;
     char buff[100];
-    fd_set rset, xset;
+    struct pollfd pollfd[1];
 
     if (argc == 2)
     {
@@ -23,46 +21,37 @@ int mian(int argc, char **argv)
 
     connfd = Accept(listenfd, NULL, NULL);
 
-    FD_ZERO(&rset);
-    FD_ZERO(&xset);
+    pollfd[0].fd = connfd;
+    pollfd[0].events = POLLRDNORM;
+
     for ( ; ; ) {
-        FD_SET(connfd, &rset);
         if (justreadoob == 0)
         {
-            FD_SET(connfd, &xset);
+            pollfd[0].events |= POLLRDBAND;
         }
+        
+        Poll(pollfd, 1, INFTIM);
 
-        Select(connfd + 1, &rset, NULL, &xset, NULL);
-
-        if (FD_ISSET(connfd, &xset))
+        if (pollfd[0].revents & POLLRDBAND)
         {
             n = Recv(connfd, buff, sizeof(buff) - 1, MSG_OOB);
-            buff[n] = 0;  /* null terminate */
+            buff[n] = 0;
             printf("read %d OOB byte: %s\n", n, buff);
             justreadoob = 1;
-            FD_CLR(connfd, &xset);
+            pollfd[0].events &= ~POLLRDBAND;
         }
-
-        if (FD_ISSET(connfd, &rset))
+    
+        if (pollfd[0].revents & POLLRDNORM)
         {
             if ( (n = Read(connfd, buff, sizeof(buff) - 1)) == 0)
             {
                 printf("received EOF\n");
                 exit(0);
             }
-            buff[n] = 0;  /* null terminate */
-            printf("read %d bytes: %s\n", n, buff);
+            
+            buff[n] = 0;
+            printf("read %d OOB byte: %s\n", n, buff);
             justreadoob = 0;
         }
     }
-}
-
-void sig_urg(int signo)
-{
-    int n;
-    char buff[100];
-    printf("SIGURG received\n");
-    n = Recv(connfd, buff, sizeof(buff) - 1, MSG_OOB);
-    buff[n] = 0;
-    printf("read %d OOB byte: %s\n", n, buff);
 }
