@@ -4,7 +4,7 @@ static void *doit(void *);
 
 int main(int argc, char **argv)
 {
-    int listenfd, connfd;
+    int listenfd, *iptr;
     pthread_t tid;
     socklen_t addrlen, len;
     struct sockaddr *cliaddr;
@@ -25,13 +25,16 @@ int main(int argc, char **argv)
     cliaddr = Malloc(addrlen);
     for ( ; ; ) {
         len = addrlen;
-        connfd = Accept(listenfd, cliaddr, &len);
-        Pthread_create(&tid, NULL, &doit, (void *) connfd);
+        iptr = Malloc(sizeof(int));
+        *iptr = Accept(listenfd, cliaddr, &len);
+        Pthread_create(&tid, NULL, &doit, iptr);
     }
 }
 
 static void * doit(void *arg)
 {
+    int connfd;
+    connfd = *((int *) arg);
     Pthread_detach(pthread_self());
     str_echo((int) arg);
     Close((int) arg);
