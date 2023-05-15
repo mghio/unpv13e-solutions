@@ -35,6 +35,8 @@ static void * doit(void *arg)
 {
     int connfd;
     connfd = *((int *) arg);
+    free(arg);
+
     Pthread_detach(pthread_self());
     str_echo((int) arg);
     Close((int) arg);
