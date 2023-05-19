@@ -36,7 +36,44 @@ int inet_srcrt_add(char *hostptr)
     
     optr += sizeof(struct in_addr);
     ocnt++;
-    len = 3 + (ocnt * sizeof(struct in_addr);
+    len = 3 + (ocnt * sizeof(struct in_addr));
     *lenptr = len;
     return (len + 1);
+}
+
+void inet_srcrt_print(u_char *ptr, int len)
+{
+    u_char c;
+    char str[INET_ADDRSTRLEN];
+    struct in_addr hop1;
+    memcpy(&hop1, ptr, sizeof(struct in_addr));
+    ptr += sizeof(struct in_addr);
+    while ( (c = *ptr++) == IPOPT_NOP)
+    {
+        // skip any leading NOPS
+    }
+    if (c == IPOPT_LSRR)
+    {
+        printf("received LSRR: ");
+    }
+    else if (c == IPOPT_SSRR)
+    {
+        printf("received SSRR: ");
+    }
+    else 
+    {
+        printf("received option type %d\n", c);
+        return;
+    }
+
+    printf("%s ", Inet_ntop(AF_INET, &hop1, str, sizeof(str)));
+    len = *ptr++ - sizeof(struct in_addr);
+    ptr++;
+    while (len > 0)
+    {
+        printf("%s ", Inet_ntop(AF_INET, ptr, str, sizeof(str)));
+        ptr += sizeof(struct in_addr);
+        len -= sizeof(struct in_addr);
+    }
+    printf("\n");
 }
