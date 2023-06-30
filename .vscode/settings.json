@@ -12,6 +12,7 @@
         "setjmp.h": "c",
         "mysdr.h": "c",
         "ssntp_ntp.h": "c",
-        "socket.h": "c"
+        "socket.h": "c",
+        "trace.h": "c"
     }
 }

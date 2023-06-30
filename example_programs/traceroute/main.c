@@ -61,14 +61,6 @@ int main(int argc, char **argv)
     if (ai->ai_family == AF_INET)
     {
         pr = &proto_v4;
-#ifdef IPV6
-    } else if (ai->ai_family == AF_INET6) {
-        pr = &proto_v6;
-        if (IN6_IS_ADDR_V4MAPPED(&(((struct sockaddr_in6 *)ai->ai_addr)->sin6_addr))) {
-            err_quit("cannot traceroute IPv4-mapped IPv6 address");
-        }
-    }
-#endif
     } else {
         err_quit("unkown address family %d", ai->ai_family);
     }
