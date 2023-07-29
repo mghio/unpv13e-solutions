@@ -40,7 +40,7 @@ int main(int argc, int **argv)
                 err_sys("accept error");
             }
         }
-        
+
         if ( (childpid = Fork()) == 0)  /* child process */
         {
             Close(listenfd);  /* close listening socket */
@@ -49,4 +49,12 @@ int main(int argc, int **argv)
         }
         Close(connfd);  /* parent closes connected socket */
     }
+}
+
+void sig_int(int signo)
+{
+    void pr_cpu_time(void);
+
+    pr_cpu_time();
+    exit(0);
 }
