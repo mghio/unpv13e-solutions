@@ -32,9 +32,30 @@ int main(int argc, char **argv)
     }
 
     Signal(SIGINT, sign_int);
-    
+
     for ( ; ; )
     {
         pause();
     }
+}
+
+void sig_int(int signo)
+{
+    int i;
+    void pr_cpu_time(void);
+
+    /* terminate all children */
+    for (i = 0; i < nchildren; i++)
+    {
+        kill(pids[i], SIGTERM);
+    }
+
+    while (wait(NULL) > 0)  /* wait for all children */
+    {
+        // do onthing
+        ;
+    }
+    
+    pr_cpu_time();
+    exit(0);
 }
