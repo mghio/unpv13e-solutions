@@ -24,3 +24,28 @@ void my_lock_init(char *pathname)
     unlock_it.l_start = 0;
     unlock_it.l_len = 0;
 }
+
+void my_lock_wait()
+{
+    int rc;
+
+    while ( (rc = fcntl(lock_fd, F_SETLKW, &lock_it)) < 0)
+    {
+        if (errno == EINTR)
+        {
+            continue;
+        }
+        else
+        {
+            err_sys("fcntl error for my_lock_wait");
+        }
+    }
+}
+
+void my_lock_release()
+{
+    if (fcntl(lock_fd, F_SETLKW, &lock_it) < 0)
+    {
+        err_sys("fcntl error for my_lock_release");
+    }
+}
